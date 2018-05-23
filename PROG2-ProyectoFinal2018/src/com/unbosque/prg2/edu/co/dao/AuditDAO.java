@@ -11,4 +11,6 @@ public interface AuditDAO {
 	public void save(Audit auditoria);
 
 	public List<Audit> list();
+	public List listaConUsuario();
 }
+
