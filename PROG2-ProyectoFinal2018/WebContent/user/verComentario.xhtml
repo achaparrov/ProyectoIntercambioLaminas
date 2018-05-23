@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Ver Comentarios</title>
+</h:head>
+<h:body>
+	<center>
+
+		<h:form>
+			<div class="row contenedor">
+				<div class="col-md-12">
+					<h1>Comentarios</h1>
+				</div>
+				<div class="col-md-12">
+					<p>#{comentarioBean.comentario.comentario}</p>
+				</div>
+
+
+				<div class="col-md-12">
+					<p:commandButton action="menuUser" value="Regresar"
+						icon="fa fa-fw fa-arrow-left"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+
+
+
+			</div>
+		</h:form>
+
+
+	</center>
+</h:body>
+</html>
