@@ -17,6 +17,7 @@ html{
 	color: red;
 	}
 	
+	
 body{
 background: transparent !important;	
 }
@@ -149,3 +150,21 @@ margin-bottom: 15px;
 	height: 100px;
 }
 
+.contenedorEstadios img{
+	width: 866px;
+	height: 567px;
+}
+.contenedorEstadios{
+
+	
+	margin-top:50px;
+	border-radius:20px;
+	margin-left: 25%;	
+	padding: 20px;
+	
+	
+}
+
+.elementoDock {
+	color:red !important;
+}
