@@ -1,0 +1,142 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+			<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gestión de Estadios</title>
+
+</h:head>
+<h:body>
+	
+		<h1 class="tituloGeneral">Listado de Estadios</h1>
+	
+	<h:form>
+		<p:dataTable var="stadium" id="tablaUsuarios"
+			value="#{stadiumBean.listarStadium}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Estadios:</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30" title="Exportar en Excel"
+						style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaEstadios"
+						fileName="Usuarios" preProcessor="#{stadiumBean.cargaPDF}"/>
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30" title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaEstadios"
+						fileName="Usuarios" preProcessor="#{stadiumBean.cargaPDF}"/>
+				</h:commandLink>
+
+			</f:facet>
+
+			<p:column  styleClass="centrado" sortBy="#{stadium.id}" headerText="ID" filterBy="#{stadium.id}">
+				
+					<h:outputText value="#{stadium.id}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Nombre" sortBy="#{stadium.name}"
+				filterBy="#{stadium.name}">
+				
+					<h:outputText value="#{stadium.name}" />
+				
+			</p:column>
+
+
+			<p:column  styleClass="centrado" headerText="Ciudad" sortBy="#{stadium.city}"
+				filterBy="#{stadium.city}">
+				
+					<h:outputText value="#{stadium.city}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Capacidad" sortBy="#{stadium.capacity}"
+				filterBy="#{stadium.capacity}">
+				
+					<h:outputText value="#{stadium.capacity}" />
+				
+			</p:column>
+			
+			<p:column  styleClass="centrado" headerText="Foto" sortBy="#{stadium.photo}"
+				filterBy="#{stadium.photo}">
+				
+					<h:outputText value="#{stadium.photo}" />
+				
+			</p:column>
+			
+			<p:column  styleClass="centrado" headerText="Temperatura" sortBy="#{stadium.temperature}"
+				filterBy="#{stadium.temperature}">
+				
+					<h:outputText value="#{stadium.temperature}" />
+				
+			</p:column>
+			
+			<p:column  styleClass="centrado" headerText="Población" sortBy="#{stadium.population}"
+				filterBy="#{stadium.population}">
+				
+					<h:outputText value="#{stadium.population}" />
+				
+			</p:column>
+			
+			<p:column  styleClass="centrado" headerText="Estado" sortBy="#{stadium.state}"
+				filterBy="#{stadium.state}">
+				
+					<h:outputText value="#{stadium.state}" />
+				
+			</p:column>
+			
+			
+			
+			
+			<p:column  styleClass="centrado" headerText="Acciones" exportable="false">
+				
+					<p:commandLink action="#{stadiumBean.prepararModificarStadium}">
+						<h:graphicImage value="/resources/images/edit.png" width="30"
+							style="" title="Editar Estadio">
+						</h:graphicImage>
+					</p:commandLink>
+
+					<h:commandButton action="#{stadiumBean.eliminarEstadio}"
+						value="Eliminar" image="/resources/images/delete.png"
+						class="botonImage" title="Eliminar Estadio" />
+
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+		<p:commandButton action="#{stadiumBean.prepararAdicionarEstadio}"
+						value="Nuevo Estadio" icon="fa fa-fw fa-user-plus" styleClass="botonEvento" />
+						
+			
+
+			<p:commandButton value="Regresar" action="menuAdmin.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>
