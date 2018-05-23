@@ -2,6 +2,7 @@ package com.unbosque.prg2.edu.co.dao;
 
 import java.util.List;
 
+
 import com.unbosque.prg2.edu.co.entity.User;
 
 public interface UserDAO {
@@ -12,5 +13,7 @@ public interface UserDAO {
     public void update(User user);
 	public User buscarUsuario(String pLogin, String pClave);
 	public User buscarUsuarioEmail(String pEmail);
+	public List<User> buscarUserLogin(String userName);
+	public User verificaUsuario(String userName, String password);
     
 }
