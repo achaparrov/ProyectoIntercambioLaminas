@@ -25,6 +25,12 @@ public class Stadium implements Serializable {
 	private String population;
 
 	private String temperature;
+	
+	private String state;
+	
+	private String name;
+	
+	private String mapa;
 
 	public Stadium() {
 	}
@@ -77,6 +83,30 @@ public class Stadium implements Serializable {
 
 	public void setTemperature(String temperature) {
 		this.temperature = temperature;
+	}
+	
+	@Column(name = "state", length = 1,nullable=false)
+	public String getState() {
+		return this.state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+	@Column( name="name", length=50, nullable= false)
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@Column( name="mapa", nullable= false)
+	public String getMapa() {
+		return mapa;
+	}
+	public void setMapa(String mapa) {
+		this.mapa = mapa;
 	}
 
 }
