@@ -11,98 +11,96 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 
 	<title>Login</title>
-	<link
-		href="https://fonts.googleapis.com/css?family=Amatic+SC|Anton|Concert+One|Oswald|Pacifico|Passion+One|Pathway+Gothic+One"
-		rel="stylesheet" />
-	<link rel="stylesheet" href="../resources/css/estiloLogin.css" />
-	<link rel="stylesheet" href="../resources/css/facebook.css" />
+
+	<link rel="stylesheet" href="../resources/css/main.css" />
 	<link rel="stylesheet"
 		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
 		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
 		crossorigin="anonymous" />
 
 	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
-	<link rel="stylesheet" href="../resources/css/animate.css" />
 
 </h:head>
 <h:body>
+	<center>
 
-	<div class="palabrasTitulo animated pulse fadeIn">
-		<h1 class="letrasAlbum">ALBUM</h1>
-		<h1 class="letrasMundial">MUNDIAL</h1>
-		<h1 class="letrasRusia">RUSIA 2018</h1>
-	</div>
+		<div class="contenedor">
+			<h:form>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Iniciar Sesión</h1>
+					</div>
+					
+					<div class="col-md-6 fila">
 
-	<div class="contenedor animated bounceInRight">
-		<h:form>
+
+						<h:outputText value="Usuario:" styleClass="labelFormulario" />
+					</div>
+					<div class="col-md-6 fila">
+						<p:inputText name="userName" value="#{userBean.usuario.userName}"
+							required="true" styleClass="inputFormulario" 
+							minlength="6" maxlength="8"  >
+							<f:validateLength minimum="6" />							
+							</p:inputText>
+							
+					</div>
+					
+	
+
+					<div class="col-md-6 fila">
+						<h:outputText value="Contraseña:" styleClass="labelFormulario" />
+					</div>
+
+					<div class="col-md-6 fila">
+						<p:password name="password" value="#{userBean.usuario.password}"
+							required="true" styleClass="inputFormulario"/>
+					</div>
+
+					 
+				 <div class="col-md-12 fila">
+						<center>
+							<p:messages showDetail="true" />
+							<p:captcha label="Captcha" />
+						</center>
+					</div>
+					 	
+ 
+					<div class="col-md-12 fila">
+						<p:commandButton value="Iniciar Sesión" action="#{userBean.login}"
+							icon="fa fa-fw fa-key" styleClass="botonEvento botonCompleto" />
+					</div>
+
+
+
+				</div>
+			</h:form>
 			<div class="row">
-				<div class="col-md-12">
-					<h1 class="letraIniciar" style="color: white">Iniciar Sesión</h1>
-				</div>
-
-				<div class="col-md-6 fila">
-
-
-					<h:outputText class="letraU" value="Usuario:"
-						styleClass="labelFormulario" />
-				</div>
-				<div class="col-md-6 fila">
-					<p:inputText name="userName" value="#{userBean.usuario.userName}"
-						required="true" styleClass="inputFormulario" />
-				</div>
-
-				<div class="col-md-6 fila">
-					<h:outputText class="letraU" value="Contraseña:"
-						styleClass="labelFormulario" />
-				</div>
-
-				<div class="col-md-6 fila">
-					<p:password name="password" value="#{userBean.usuario.password}"
-						required="true" styleClass="inputFormulario" />
-				</div>
-
 
 				<div class="col-md-12 fila">
-					<center>
-						<p:messages showDetail="true" />
-						<p:captcha label="Captcha" />
-					</center>
+					<h:form>
+						<p:commandButton value="Registrarse"
+							action="#{userBean.prepararAdicionarUsuarioInicio}"
+							icon="fa fa-fw fa-user-plus"
+							styleClass="botonEvento botonCompleto" />
+
+					</h:form>
+
 				</div>
-
-
 				<div class="col-md-12 fila">
-					<h:commandButton value="Iniciar Sesión" action="#{userBean.login}"
-						icon="fa fa-fw fa-key" styleClass="botonEvento botonCompleto" />
+					<h:form>
+						<h:commandLink action="recordarContrasenia" value="Recordar Contraseña" />
+					</h:form>
 				</div>
 
 
-
-			</div>
-		</h:form>
-		<div class="row">
-
-			<div class="col-md-12 fila">
-				<h:form>
-					<h:commandButton value="Registrarse"
-						action="#{userBean.prepararAdicionarUsuarioInicio}"
-						icon="fa fa-fw fa-user-plus"
-						styleClass="botonEvento botonCompleto2" />
-
-				</h:form>
-
-			</div>
-			<div class="col-md-12 fila">
-				<h:form>
-					<h:commandLink action="recordarContrasenia"
-						value="Recordar Contraseña" class="letraRecordar" />
-				</h:form>
 			</div>
 		</div>
-	</div>
 
 
-	<div class="redesSociales">
-		<h1 class="laminiti">Bienvenido a Laminiti, el mejor sitio para intercambiar tus laminas</h1>
-	</div>
+
+
+
+
+	</center>
 </h:body>
 </html>
