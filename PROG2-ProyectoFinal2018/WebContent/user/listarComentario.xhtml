@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gestión de Comentarios</title>
+
+</h:head>
+<h:body>
+
+	<h1 class="tituloGeneral">Listado de Comentarios</h1>
+
+	<h:form>
+		<p:dataTable var="comentario" id="tablaNoticias"
+			value="#{comentarioBean.listarComentario}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Comentarios</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30"
+						title="Exportar en Excel" style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaComentarios"
+						fileName="Comentarios" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30"
+						title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaComentarios"
+						fileName="Noticias" preProcessor="#{auditBean.cargaPDF}" />
+				</h:commandLink>
+
+			</f:facet>
+
+			<p:column styleClass="centrado" sortBy="#{comentario.id}" headerText="ID"
+				filterBy="#{comentario.id}">
+
+				<h:outputText value="#{comentario.id}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Fecha"
+				sortBy="#{comentario.fechaComentario}" filterBy="#{comentario.fechaComentario}">
+				<f:facet name="header">
+					<h:outputText value="Fecha" />
+				</f:facet>
+
+				<h:outputText value="#{comentario.fechaComentario}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Comentario"
+				sortBy="#{comentario.comentario}"
+				filterBy="#{comentario.comentario}">
+				<f:facet name="header">
+					<h:outputText value="Comentario" />
+				</f:facet>
+
+				<h:outputText value="#{comentario.comentario}" />
+
+			</p:column>
+
+
+			<p:column styleClass="centrado" headerText="Estado"
+				sortBy="#{comentario.state}" filterBy="#{comentario.state}">
+				<f:facet name="header">
+					<h:outputText value="Estado" />
+				</f:facet>
+
+				<h:outputText value="#{comentario.state}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Acciones"
+				exportable="false">
+
+
+				<h:commandButton action="#{comentarioBean.eliminarComentario}" value="Eliminar"
+					image="/resources/images/delete.png" class="botonImage"
+					title="Eliminar Comentario" />
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+		
+
+			<p:commandButton value="Regresar" action="menuAdmin.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>
