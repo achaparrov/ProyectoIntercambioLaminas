@@ -1,0 +1,16 @@
+package com.unbosque.prg2.edu.co.dao;
+
+import java.util.List;
+
+import com.unbosque.prg2.edu.co.entity.Comentario;
+
+
+public interface ComentarioDAO {
+	
+	public void save (Comentario descripcion);
+	public Comentario getId(int id);
+    public List<Comentario>list();
+    public void remove(Comentario descripcion);
+    public void update(Comentario descripcion);
+
+}
