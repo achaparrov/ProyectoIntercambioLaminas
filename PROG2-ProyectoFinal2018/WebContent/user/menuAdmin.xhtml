@@ -22,9 +22,19 @@
 
 </h:head>
 <h:body>
+	
 	<center>
 
-		<div class="contenedor">
+<p:dock position="bottom">
+   <p:menuitem value="Usuarios" icon="/resources/images/usuarios.png" url="listUser.xhtml" styleClass="elementoDock" />
+    <p:menuitem value="Auditoria" icon="/resources/images/auditoria.png" url="listAudit.xhtml" styleClass="elementoDock"/>
+    <p:menuitem value="Noticias" icon="/resources/images/noticias.png" url="listNews.xhtml" styleClass="elementoDock"/>
+    <p:menuitem value="Estadios" icon="/resources/images/estadios.png" url="listStadium.xhtml" styleClass="elementoDock"/>
+    <p:menuitem value="Salir" icon="/resources/images/logout.png" url="login.xhtml" styleClass="elementoDock"/>
+</p:dock>
+</center>
+
+	<!--  	<div class="contenedor">
 			<div class="col-md-12">
 				<h1>Menú Administrador</h1>
 			</div>
@@ -51,12 +61,19 @@
 							icon="fa fa-fw fa-file" styleClass="botonEvento botonCompleto" />
 					</h:form>
 				</div>
+				
+				<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Gerenciar Estadios" action="listStadium.xhtml"
+							icon="fa fa-fw fa-file" styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
 
 
 
 			</div>
-		</div>
-	</center>
+		</div> -->
+	
 
 
 
@@ -65,13 +82,13 @@
 		<h:form>
 
 
-			<p:carousel var="audit" value="#{auditBean.listarAuditoria}"
+			<p:carousel var="audit" value="#{auditBean.listarAuditUsuario}"
 				numVisible="4" effect="easeInStrong" headerText="Auditoría"
 				style="margin-bottom:0" autoPlayInterval="12000" circular="true">
-				<p:tab title="#{audit.operation}">
+				<p:tab title="#{audit[3]}">
 					<h:panelGrid columns="2" cellpadding="10">
-						<p class="parrafoCarrusel">#{audit.operation}
-							#{audit.tableName} #{audit.tableId} #{audit.createDate}</p>
+						<p class="parrafoCarrusel">
+							#{audit[0]} #{audit[3]} #{audit[4]} #{audit[5]} #{audit[6]}</p>
 
 
 
