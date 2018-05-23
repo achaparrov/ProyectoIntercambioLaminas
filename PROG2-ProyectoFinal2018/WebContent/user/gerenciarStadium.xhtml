@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gerenciar Estadios</title>
+</h:head>
+<h:body>
+	<center>
+
+		<h:form enctype="multipart/form-data">
+			<div class="row contenedor">
+				<div class="col-md-12">
+					<h1>Registre un Estadio</h1>
+				</div>
+				<div class="col-md-6 fila">
+					<h:outputText value="Nombre:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{stadiumBean.stadium.name}" styleClass="inputFormulario"  />
+				</div>
+				<div class="col-md-6 fila">
+					<h:outputText value="Ciudad:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{stadiumBean.stadium.city}" styleClass="inputFormulario"  />
+				</div>
+				<div class="col-md-6 fila">
+					<h:outputText value="Capacidad:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{stadiumBean.stadium.capacity}" styleClass="inputFormulario"  />
+				</div>
+
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Foto:"
+						styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:fileUpload value="#{stadiumBean.file}" mode="simple" skinSimple="true"/>
+				</div>
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Temperatura:"
+						styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{stadiumBean.stadium.temperature}" styleClass="inputFormulario"  />
+				</div>
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Población:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{stadiumBean.stadium.population}" styleClass="inputFormulario"  />
+				</div>
+				
+				<div class="col-md-12">
+					<p:inputTextarea rows="5" cols="30" counter="display"
+						maxlength="500" counterTemplate="{0} Caracteres restantes."
+						autoResize="false" value="#{stadiumBean.stadium.mapa}" />
+					<h:outputText id="display" />
+				</div>
+
+
+				<br />
+				<div class="col-md-12">
+					<p:commandButton ajax="false" actionListener="#{stadiumBean.adicionarStadium}" action="listStadium"
+						value="Insertar Nuevo Estadio" icon="fa fa-fw fa-user-plus"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton ajax="false" actionListener="#{stadiumBean.modificarStadium}" action="listStadium"
+						value="Modificar Estadio" icon="fa fa-fw fa-user-edit"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton action="listStadium" value="Regresar"
+						icon="fa fa-fw fa-arrow-left"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+
+
+
+			</div>
+		</h:form>
+		
+
+
+	</center>
+</h:body>
+</html>
