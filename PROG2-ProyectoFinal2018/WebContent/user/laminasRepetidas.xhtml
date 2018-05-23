@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Laminas Repetidas</title>
+
+</h:head>
+<h:body>
+
+	<h1 class="tituloGeneral">Laminas Repetidas</h1>
+
+	<h:form>
+		<p:dataTable var="laminas" id="tablaLaminas"
+			value="#{repeatedsheetBean.listarRepeatedsheet}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Laminas Repetidas</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30"
+						title="Exportar en Excel" style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaLaminas"
+						fileName="Laminas Repetidas" />
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30"
+						title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaLaminas"
+						fileName="Laminas Repetidas" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+			</f:facet>
+
+
+			<p:column styleClass="centrado" headerText="Número de lamina"
+				sortBy="#{laminas.numberSheets}" filterBy="#{laminas.numberSheets}">
+				<f:facet name="header">
+					<h:outputText value="Número de Lamina" />
+				</f:facet>
+
+				<h:outputText value="#{laminas.numberSheets}" />
+
+			</p:column>
+			
+			<p:column styleClass="centrado" headerText="Cantidad de Repetidas"
+				sortBy="#{laminas.countSheets}" filterBy="#{laminas.countSheets}">
+				<f:facet name="header">
+					<h:outputText value="Cantidad de Repetidas" />
+				</f:facet>
+
+				<h:outputText value="#{laminas.countSheets}" />
+
+			</p:column>
+
+			
+	
+			
+			<p:column styleClass="centrado" headerText="Modificar"
+				exportable="false">				
+
+				<h:commandButton action="#{repeatedsheetBean.prepararModificarLamina}" value="Modificar"
+					image="/resources/images/edit.png" class="botonImage"
+					title="Modificar Lamina" />
+					
+					
+				<h:commandButton action="#{repeatedsheetBean.eliminarLamina}" value="Eliminar"
+					image="/resources/images/delete.png" class="botonImage"
+					title="Eliminar Lamina" />
+					
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+			<p:commandButton action="#{repeatedsheetBean.prepararAdicionarRepeatedsheet}"
+				value="Agregar Lamina" icon="fa fa-fw fa-newspaper"
+				styleClass="botonEvento" />
+
+
+
+			<p:commandButton value="Regresar" action="menuUser.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>

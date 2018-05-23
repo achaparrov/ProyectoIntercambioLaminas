@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Registro de Usuarios</title>
+</h:head>
+<h:body>
+	<center>
+
+		<h:form>
+			<div class="row contenedor">
+				<div class="col-md-12">
+					<h1>Registre un Usuario</h1>
+				</div>
+				<div class="col-md-6 fila">
+					<h:outputText value="Usuario:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{userBean.usuario.userName}" styleClass="inputFormulario"  />
+				</div>
+				<div class="col-md-6 fila">
+					<h:outputText value="Nombre Completo:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{userBean.usuario.fullName}" styleClass="inputFormulario"  />
+				</div>
+
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Correo Electrónico:"
+						styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{userBean.usuario.emailAddress}"  styleClass="inputFormulario" />
+				</div>
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Número de Teléfono:"
+						styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:inputText value="#{userBean.usuario.phoneNumber}" styleClass="inputFormulario"  />
+				</div>
+
+				<div class="col-md-6 fila">
+					<h:outputText value="Tipo de Usuario:" styleClass="labelFormulario" />
+				</div>
+				<div class="col-md-6">
+					<p:selectOneMenu value="#{userBean.usuario.userType}" styleClass="inputFormulario" >
+						<f:selectItem itemLabel="Select One" itemValue="" />
+						<f:selectItem itemLabel="ADMIN" itemValue="ADMIN" />
+						<f:selectItem itemLabel="USER" itemValue="USER" />
+					</p:selectOneMenu>
+
+				</div>
+
+
+				<br />
+				<div class="col-md-12">
+					<p:commandButton action="#{userBean.adicionarUsuario}"
+						value="Insertar Nuevo Usuario" icon="fa fa-fw fa-user-plus"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton action="#{userBean.modificarUsuario}"
+						value="Modificar Usuario" icon="fa fa-fw fa-user-edit"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton action="listUser" value="Regresar"
+						icon="fa fa-fw fa-arrow-left"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+
+
+
+			</div>
+		</h:form>
+
+
+	</center>
+</h:body>
+</html>

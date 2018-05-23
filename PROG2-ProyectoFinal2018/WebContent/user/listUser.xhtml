@@ -1,0 +1,148 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+			<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gestión de Usuarios</title>
+
+</h:head>
+<h:body>
+	
+		<h1 class="tituloGeneral">Listado de Usuarios</h1>
+	
+	<h:form>
+		<p:dataTable var="user" id="tablaUsuarios"
+			value="#{userBean.listarUsuarios}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Usuarios</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30" title="Exportar en Excel"
+						style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaUsuarios"
+						fileName="Usuarios" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30" title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaUsuarios"
+						fileName="Usuarios" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+			</f:facet>
+
+			<p:column  styleClass="centrado" sortBy="#{user.id}" headerText="ID" filterBy="#{user.id}">
+				
+					<h:outputText value="#{user.id}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Usuario" sortBy="#{user.userName}"
+				filterBy="#{user.userName}">
+				
+					<h:outputText value="#{user.userName}" />
+				
+			</p:column>
+
+
+			<p:column  styleClass="centrado" headerText="Nombre" sortBy="#{user.fullName}"
+				filterBy="#{user.fullName}">
+				
+					<h:outputText value="#{user.fullName}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="E-mail" sortBy="#{user.emailAddress}"
+				filterBy="#{user.emailAddress}">
+				
+					<h:outputText value="#{user.emailAddress}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Teléfono" sortBy="#{user.phoneNumber}"
+				filterBy="#{user.phoneNumber}">
+				
+					<h:outputText value="#{user.phoneNumber}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Última contraseña"
+				sortBy="#{user.dateLastPassword}">
+				<f:facet name="header">
+					<h:outputText value="Última contraseña" />
+				</f:facet>
+				
+					<h:outputText value="#{user.dateLastPassword}" />
+				
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Tipo de usuario" sortBy="#{user.userType}">
+				<f:facet name="header">
+					<h:outputText value="Tipo de usuario" />
+				</f:facet>
+				
+					<h:outputText value="#{user.userType}" />
+				
+			</p:column>
+
+			<p:column  styleClass="centrado"  sortBy="#{user.active}" headerText="Estado" >
+				
+					<h:outputText value="Activo" rendered="#{'A' eq user.active}" />
+				
+					<h:outputText value="InActivo" rendered="#{'I' eq user.active}"  />
+
+			</p:column>
+
+			<p:column  styleClass="centrado" headerText="Acciones" exportable="false">
+				
+					<p:commandLink action="#{userBean.prepararModificarUsuario}">
+						<h:graphicImage value="/resources/images/edit.png" width="30"
+							style="" title="Editar Usuario">
+						</h:graphicImage>
+					</p:commandLink>
+
+					<h:commandButton action="#{userBean.eliminarUsuario}"
+						value="Eliminar" image="/resources/images/delete.png"
+						class="botonImage" title="Eliminar Usuario" />
+
+					<h:commandButton action="#{userBean.activarUsuario}"
+						value="Activar" image="/resources/images/active.png"
+						class="botonImage" title="Activar Usuario" />
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+		<p:commandButton action="#{userBean.prepararAdicionarUsuario}"
+						value="Nuevo Usuario" icon="fa fa-fw fa-user-plus" styleClass="botonEvento" />
+						
+			
+
+			<p:commandButton value="Regresar" action="menuAdmin.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>

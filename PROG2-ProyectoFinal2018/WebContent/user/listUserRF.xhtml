@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+	<f:view>
+		<h:head>
+			<title>Gestión de Usuarios</title>
+		</h:head>
+		<h:body>
+
+			<h:form>
+				<h:dataTable value="#{userBean.listarUsuarios}" var="usuario"
+					width="300px" rows="15">
+					<f:facet name="header">
+						<h:outputText value="Lista de Usuarios" />
+					</f:facet>
+					<h:column sortBy="#{usuario.id}">
+						<f:facet name="header">
+							<h:outputText value="Id" />
+						</f:facet>
+						<h:outputText value="#{usuario.id}" />
+					</h:column>
+					<h:column sortBy="#{usuario.userName}">
+						<f:facet name="header">
+							<h:outputText value="User Name" />
+						</f:facet>
+						<h:outputText value="#{usuario.userName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Password" />
+						</f:facet>
+						<h:outputText value="*******" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Full Name" />
+						</f:facet>
+						<h:outputText value="#{usuario.fullName}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="E-mail" />
+						</f:facet>
+						<h:outputText value="#{usuario.emailAddress}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Phone Number" />
+						</f:facet>
+						<h:outputText value="#{usuario.phoneNumber}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Date Last Password" />
+						</f:facet>
+						<h:outputText value="#{usuario.dateLastPassword}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="User Type" />
+						</f:facet>
+						<h:outputText value="#{usuario.userType}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="Active" />
+						</f:facet>
+						<h:outputText value="#{usuario.active}" />
+					</h:column>
+				</h:dataTable>
+			</h:form>
+		</h:body>
+	</f:view>
+</ui:composition>

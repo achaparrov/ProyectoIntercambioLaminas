@@ -1,0 +1,151 @@
+html{ 
+    background-image:url("../images/imagen1.jpg");
+	background-size:100%;
+	background-repeat:no-repeat;
+
+	background-repeat: no-repeat;
+	background-attachment:fixed;
+	background-size:"100%";
+	
+	}
+	
+	.panelGridCenter {
+    margin: 0 auto;
+	}
+	
+	.error{
+	color: red;
+	}
+	
+body{
+background: transparent !important;	
+}
+
+h1{
+	
+  color:white;
+
+    text-shadow: 2px 2px black;
+	
+}
+.tituloGeneral{
+text-align: center;
+color: white;	
+}
+.botonImage{
+	width: 30px;
+}
+
+.centrado{
+	text-align: center;
+}
+
+.ui-column-title{
+	height: 30px;
+}
+
+.botonEvento{
+	padding: 6px;
+}
+.botonCompleto{
+	width: 100%;
+	margin-top: 15px;
+}
+.botonEvento:hover{
+	background-color: red;
+	color:white;
+	
+	background: red -webkit-gradient(linear,left top,left bottom,from(rgba(255,255,255,0.8)),to(rgba(255,255,255,0)));
+	background: red -moz-linear-gradient(top,rgba(255,255,255,0.8),rgba(255,255,255,0));
+	border:1px solid red;
+	
+}
+
+.contenedor{
+	background: white;
+	width: 35%;
+	padding: 20px;
+	margin-top: 50px;
+	border-radius: 20px;
+}
+
+
+.contenedor h1{
+	font-size: 2em;
+	margin-bottom: 35px;
+	color:#3651d8;
+}
+.labelFormulario{
+	font-size: 1.2em;
+	font-weight: 600;
+}
+
+.fila{
+	margin-bottom: 15px;
+	text-align: center;
+}
+
+.inputFormulario{
+	width: 100%;
+	}
+	
+	textarea, input[type="text"], input[type="password"], select{
+	font-size: 1em;
+	}
+
+
+/*SELECT OPTION*/
+.ui-selectonemenu{
+	    padding-right: 0px; 
+}
+.ui-selectonemenu .ui-selectonemenu-trigger{
+	width: 26px;
+}
+
+.ui-selectonemenu .ui-selectonemenu-trigger .ui-icon{
+	margin-top:9px;
+}
+/*TERMINA EL SELECT*/
+
+.noticia{
+max-height: 	150px;
+}
+
+.contenedorNoticias{
+
+	
+	margin-top:50px;
+	border-radius:20px;
+	margin-left: 15px;
+	margin-right: 15px;
+	
+	padding: 20px;
+	
+	
+}
+.contenedorNoticias h1{
+text-align: center;	
+margin-bottom: 15px;
+}
+.noticia p{
+	font-size: 20px;
+	 text-align: justify;
+}
+.contenedorNoticias .ui-carousel-header{
+	text-align: center;
+	background: #3651d8;
+	color:white;
+	}
+
+.contenedorNoticias .ui-carousel-item{
+	height: 200px;
+}
+
+.botonVerMas{
+	height: 50px;	
+}
+
+.parrafoCarrusel{
+	height: 100px;
+}
+

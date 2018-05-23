@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Laminas Repetidas</title>
+
+</h:head>
+<h:body>
+
+	<h1 class="tituloGeneral">Laminas Repetidas</h1>
+
+	<h:form>
+		<p:dataTable var="laminas" id="tablaLaminas"
+			value="#{repeatedsheetBean.listarLaminasFaltantes}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Laminas Repetidas</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30"
+						title="Exportar en Excel" style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaLaminas"
+						fileName="Laminas Repetidas" />
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30"
+						title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaLaminas"
+						fileName="Laminas Repetidas" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+			</f:facet>
+
+	<p:column styleClass="centrado" headerText="Nombre"
+				sortBy="#{laminas.userId}" filterBy="#{laminas.userId}">
+				<f:facet name="header">
+					<h:outputText value="Nombre" />
+				</f:facet>
+
+				<h:outputText value="#{laminas[1]}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Laminas Le Sirven"
+				sortBy="#{laminas.userId}" filterBy="#{laminas.userId}">
+				<f:facet name="header">
+					<h:outputText value="Laminas Que Le Sirven" />
+				</f:facet>
+
+				<h:outputText value="#{laminas[0]}" />
+
+			</p:column>
+				<p:column styleClass="centrado" headerText="Laminas Que Nos Sirven"
+				sortBy="#{laminas.userId}" filterBy="#{laminas.userId}">
+				<f:facet name="header">
+					<h:outputText value="Laminas Que Nos Sirven" />
+				</f:facet>
+
+				<h:outputText value="#{laminas[6]}" />
+
+			</p:column>
+			
+			
+			
+	
+			
+			<p:column styleClass="centrado" headerText="Contacta"
+				exportable="false">				
+
+				<h:commandButton action="#{repeatedsheetBean.contactoCorreoCambio}" value="Modificar"
+					image="/resources/images/email.png" class="botonImage"
+					title="Enviar correo" />
+					
+					<a href="https://api.whatsapp.com/send?phone=57#{laminas[4]}" target="_blank"><img src="../resources/images/Whatsapp.png" class="botonImage" style="margin-top:  -20px;"></img></a>
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+			<p:commandButton value="Regresar" action="menuUser.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>

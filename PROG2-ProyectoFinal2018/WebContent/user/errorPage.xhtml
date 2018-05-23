@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+	<title>Error</title>
+
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+</h:head>
+<h:body>
+	<center>
+
+		<div class="contenedor">
+			<h:form>
+				<div class="row">
+					<div class="col-md-12">
+						<h1>Error</h1>
+					</div>
+					<div class="col-md-12 fila">
+						<h:outputText value="#{userBean.respuesta}" styleClass="labelFormulario error" />
+					</div>
+
+					<div class="col-md-12 fila">
+						<p:commandButton value="Regresar" action="login"
+							icon="fa fa-fw fa-arrow-left" styleClass="botonEvento botonCompleto" />
+					</div>
+
+
+
+				</div>
+				</h:form>
+		</div>
+
+
+
+
+
+
+	</center>
+</h:body>
+</html>

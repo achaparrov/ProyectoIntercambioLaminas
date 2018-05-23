@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+	<title>Listado Auditoría</title>
+
+</h:head>
+<h:body>
+	<h1 class="tituloGeneral">Listado de Auditoría</h1>
+	<h:form>
+		<p:dataTable var="audit" id="tablaAudit"
+			value="#{auditBean.listarAuditoria}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px" >
+			<f:facet name="header">Auditoria</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30"
+						style="" title="Exportar en Excel">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaAudit" fileName="Auditoria" />
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30"
+						title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaAudit" fileName="Auditoria" preProcessor="#{auditBean.cargaPDF}" />
+				</h:commandLink>
+
+			</f:facet>
+
+
+
+			<p:column styleClass="centrado" headerText="ID" sortBy="#{audit.id}"
+				filterBy="#{audit.id}">
+				<h:outputText value="#{audit.id}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="ID Usuario"
+				sortBy="#{audit.userId}" filterBy="#{audit.userId}">
+				<h:outputText value="#{audit.userId}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Operación"
+				sortBy="#{audit.operation}" filterBy="#{audit.operation}">
+				<h:outputText value="#{audit.operation}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Nombre Tabla"
+				sortBy="#{audit.tableName}" filterBy="#{audit.tableName}">
+				<h:outputText value="#{audit.tableName}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="ID Tabla"
+				sortBy="#{audit.tableId}" filterBy="#{audit.tableId}">
+				<h:outputText value="#{audit.tableId}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Fecha Creación"
+				sortBy="#{audit.createDate}" filterBy="#{audit.createDate}">
+				<h:outputText value="#{audit.createDate}" />
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Dirección IP"
+				sortBy="#{audit.ip}" filterBy="#{audit.ip}">
+				<h:outputText value="#{audit.ip}" />
+			</p:column>
+
+		</p:dataTable>
+		<center>
+			
+
+			<p:commandButton value="Regresar" action="menuAdmin.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+
+		</center>
+	</h:form>
+
+</h:body>
+</html>

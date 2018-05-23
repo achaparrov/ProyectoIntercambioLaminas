@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gerencias Noticias</title>
+</h:head>
+<h:body>
+	<center>
+
+		<h:form>
+			<div class="row contenedor">
+				<div class="col-md-12">
+					<h1>Registre una Noticia</h1>
+				</div>
+
+				<div class="col-md-12 fila">
+					<h:outputText value="Breve Descripción:"
+						styleClass="labelFormulario" />
+				</div>
+
+				<div class="col-md-12">
+					<p:inputTextarea rows="5" cols="30" counter="display"
+						maxlength="60" counterTemplate="{0} Caracteres restantes."
+						autoResize="false" value="#{newsBean.news.shortDescription}" />
+					<h:outputText id="display" />
+				</div>
+
+				<div class="col-md-12 fila">
+					<h:outputText value="Descripción Completa:"
+						styleClass="labelFormulario" />
+				</div>
+
+				<div class="col-md-12">
+					<p:inputTextarea rows="5" cols="30" counter="countDescripcion"
+						maxlength="120" counterTemplate="{0} Caracteres restantes."
+						autoResize="false" value="#{newsBean.news.largeDescription}" />
+					<h:outputText id="countDescripcion" />
+				</div>
+
+
+
+
+
+
+				<div class="col-md-12">
+					<p:commandButton action="#{newsBean.adicionarNews}"
+						value="Insertar Nueva Noticia" icon="fa fa-fw fa-user-plus"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton action="#{newsBean.modificarNews}"
+						value="Modificar Noticia" icon="fa fa-fw fa-user-edit"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+				<div class="col-md-12">
+					<p:commandButton action="listNews" value="Regresar"
+						icon="fa fa-fw fa-arrow-left"
+						styleClass="botonEvento botonCompleto" />
+				</div>
+
+
+
+
+			</div>
+		</h:form>
+
+
+	</center>
+</h:body>
+</html>

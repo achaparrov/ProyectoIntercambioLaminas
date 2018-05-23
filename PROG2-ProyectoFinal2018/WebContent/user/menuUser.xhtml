@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+
+	<title>Bienvenido Usuario</title>
+
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+</h:head>
+<h:body>
+	<center>
+
+		<div class="contenedor">
+			<div class="col-md-12">
+				<h1>Menú Usuario</h1>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Laminas faltantes"
+							action="laminasFaltantes" icon="fa fa-fw fa-user-plus"
+							styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
+
+				<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Laminas repetidas"
+							action="laminasRepetidas" icon="fa fa-fw fa-file"
+							styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
+
+				<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Listar Usuarios" action="intercambio2"
+							icon="fa fa-fw fa-file" styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
+
+				
+				
+				<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Consultas"
+							action="consultas" icon="fa fa-fw fa-file"
+							styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
+				
+					<div class="col-md-12 fila">
+					<h:form>
+						<p:commandButton value="Opinion"
+							action="opinion" icon="fa fa-fw fa-file"
+							styleClass="botonEvento botonCompleto" />
+					</h:form>
+				</div>
+				
+				
+
+
+
+			</div>
+		</div>
+	</center>
+
+
+
+
+	<div class="contenedorNoticias">
+	
+
+
+		<h:form id="form">
+
+
+			<p:carousel var="news" value="#{newsBean.listarNews}" numVisible="4"
+				effect="easeInStrong" headerText="Noticias" style="margin-bottom:0"
+				autoPlayInterval="16000" circular="true">
+				<p:tab title="#{news.dateNews}">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p class="parrafoCarrusel">
+							<h:outputText value="#{news.shortDescription}" />
+						</p>
+
+						<h:commandButton action="#{newsBean.prepararVerNews}"
+							value="Editar" image="/resources/images/boton-ver_mas.png"
+							class="botonVerMas" title="Ver más" />
+
+
+
+					</h:panelGrid>
+				</p:tab>
+
+			</p:carousel>
+		</h:form>
+
+	</div>
+
+
+
+</h:body>
+</html>

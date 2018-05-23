@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet" href="../resources/css/main.css" />
+	<link rel="stylesheet"
+		href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+		integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+		crossorigin="anonymous" />
+	<link rel="stylesheet" href="../resources/css/bootstrap.min.css" />
+
+
+	<title>Gestión de Noticias</title>
+
+</h:head>
+<h:body>
+
+	<h1 class="tituloGeneral">Listado de Noticias</h1>
+
+	<h:form>
+		<p:dataTable var="news" id="tablaNoticias"
+			value="#{newsBean.listarNews}" rows="10" paginator="true"
+			paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+			rowsPerPageTemplate="10,15,20" style="margin-bottom:20px">
+
+			<f:facet name="header">Noticias</f:facet>
+
+			<f:facet name="{Exporters}">Exportar: 
+            
+            	<h:commandLink style="margin-left: 70px">
+					<h:graphicImage value="/resources/images/xls.png" width="30"
+						title="Exportar en Excel" style="">
+					</h:graphicImage>
+					<p:dataExporter type="xls" target="tablaNoticias"
+						fileName="Noticias" preProcessor="#{auditBean.cargaPDF}"/>
+				</h:commandLink>
+
+				<h:commandLink style="margin-left: 20px">
+					<h:graphicImage value="/resources/images/pdf.png" width="30"
+						title="Exportar en PDF"></h:graphicImage>
+					<p:dataExporter type="pdf" target="tablaNoticias"
+						fileName="Noticias" preProcessor="#{auditBean.cargaPDF}" />
+				</h:commandLink>
+
+			</f:facet>
+
+			<p:column styleClass="centrado" sortBy="#{news.id}" headerText="ID"
+				filterBy="#{news.id}">
+
+				<h:outputText value="#{news.id}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Fecha Noticia"
+				sortBy="#{news.dateNews}" filterBy="#{news.dateNews}">
+				<f:facet name="header">
+					<h:outputText value="Fecha Noticia" />
+				</f:facet>
+
+				<h:outputText value="#{news.dateNews}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Corta Descripción"
+				sortBy="#{news.shortDescription}"
+				filterBy="#{news.shortDescription}">
+				<f:facet name="header">
+					<h:outputText value="Corta Descripción" />
+				</f:facet>
+
+				<h:outputText value="#{news.shortDescription}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Larga Descripción"
+				sortBy="#{news.largeDescription}"
+				filterBy="#{news.largeDescription}">
+				<f:facet name="header">
+					<h:outputText value="Larga Descripción" />
+				</f:facet>
+
+				<h:outputText value="#{news.largeDescription}" />
+
+			</p:column>
+
+
+			<p:column styleClass="centrado" headerText="Estado"
+				sortBy="#{news.state}" filterBy="#{news.state}">
+				<f:facet name="header">
+					<h:outputText value="Estado" />
+				</f:facet>
+
+				<h:outputText value="#{news.state}" />
+
+			</p:column>
+
+			<p:column styleClass="centrado" headerText="Acciones"
+				exportable="false">
+
+				<h:commandButton action="#{newsBean.prepararModificarNews}"
+					value="Editar" image="/resources/images/edit.png"
+					class="botonImage" title="Editar Noticia" />
+
+				<h:commandButton action="#{newsBean.eliminarNews}" value="Eliminar"
+					image="/resources/images/delete.png" class="botonImage"
+					title="Eliminar Noticia" />
+
+				<h:commandButton action="#{newsBean.activarNews}" value="Activar"
+					image="/resources/images/active.png" class="botonImage"
+					title="Activar Noticia" />
+
+
+			</p:column>
+
+
+
+
+		</p:dataTable>
+		<br />
+		<center>
+			<p:commandButton action="#{newsBean.prepararAdicionarNoticia}"
+				value="Nueva Noticia" icon="fa fa-fw fa-newspaper"
+				styleClass="botonEvento" />
+
+
+
+			<p:commandButton value="Regresar" action="menuAdmin.xhtml"
+				icon="fa fa-fw fa-arrow-left" styleClass="botonEvento" />
+		</center>
+	</h:form>
+
+
+</h:body>
+</html>
