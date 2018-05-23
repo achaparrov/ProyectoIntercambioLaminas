@@ -1,0 +1,57 @@
+package com.unbosque.prg2.edu.co.dao.impl;
+
+import java.util.List;
+
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import com.unbosque.prg2.edu.co.dao.ComentarioDAO;
+import com.unbosque.prg2.edu.co.entity.Comentario;
+
+import com.unbosque.prg2.edu.co.util.HibernateUtil;
+
+public class ComentarioDAOImpl implements ComentarioDAO {
+
+	@Override
+	public void save(Comentario descripcion) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.save(descripcion);
+		t.commit();
+		
+	}
+
+	@Override
+	public Comentario getId(int id) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		return (Comentario) session.load(Comentario.class, id);
+	}
+
+	@Override
+	public List<Comentario> list() {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		List lista = session.createQuery("from Comentario order by id DESC").list();
+		t.commit();
+		return lista;
+	}
+
+	@Override
+	public void remove(Comentario descripcion) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.delete(descripcion);
+		t.commit();
+		
+	}
+
+	@Override
+	public void update(Comentario descripcion) {
+		Session session = HibernateUtil.getSessionFactory().openSession();
+		Transaction t = session.beginTransaction();
+		session.update(descripcion);
+		t.commit();
+		
+	}
+
+}
