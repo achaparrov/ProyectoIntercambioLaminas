@@ -1,0 +1,138 @@
+package com.unbosque.prg2.edu.co.beans;
+
+import java.io.Serializable;
+import java.net.Inet4Address;
+import java.net.UnknownHostException;
+import java.util.Date;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+import javax.faces.model.DataModel;
+import javax.faces.model.ListDataModel;
+
+import com.unbosque.prg2.edu.co.dao.AuditDAO;
+import com.unbosque.prg2.edu.co.dao.ComentarioDAO;
+import com.unbosque.prg2.edu.co.dao.UserDAO;
+import com.unbosque.prg2.edu.co.dao.impl.AuditDAOImpl;
+import com.unbosque.prg2.edu.co.dao.impl.ComentarioDAOImpl;
+import com.unbosque.prg2.edu.co.dao.impl.UserDAOImpl;
+import com.unbosque.prg2.edu.co.entity.Audit;
+import com.unbosque.prg2.edu.co.entity.Comentario;
+import com.unbosque.prg2.edu.co.entity.User;
+
+@ManagedBean
+@SessionScoped
+public class ComentarioBean implements Serializable {
+
+	@ManagedProperty("#{userBean}")
+	private UserBean userBean;
+
+	private Comentario comentario;
+	private DataModel listaComentario;
+
+	public ComentarioBean() {
+		comentario = new Comentario();
+		
+	}
+
+	public String eliminarComentario() throws UnknownHostException {
+		Comentario comentarioTemp = (Comentario) (listaComentario.getRowData());
+		ComentarioDAO dao = new ComentarioDAOImpl();
+		comentarioTemp.setState("I");
+		dao.update(comentarioTemp);
+
+		// Auditoria ELemento
+		Audit aud = new Audit();
+		aud.setCreateDate(new Date());
+		aud.setOperation("Comentario Desactivado");
+		aud.setTableId(comentarioTemp.getId());
+		aud.setTableName("comentario");
+		aud.setUserId(userBean.getUsuarioSesion().getId());
+		aud.setIp(Inet4Address.getLocalHost().getHostAddress());
+		AuditDAO audiDao = new AuditDAOImpl();
+		audiDao.save(aud);
+		// TERMINA Auditoria ELemento
+
+		return "listComentario";
+	}
+
+
+	public String prepararModificarComentario() {
+		comentario = (Comentario) (listaComentario.getRowData());
+		return "gerenciarComentario";
+	}
+
+	public String prepararVerComentario() {
+		comentario = (Comentario) (listaComentario.getRowData());
+		return "verComentario";
+	}
+
+	public String adicionarComentario() throws UnknownHostException {
+		ComentarioDAO dao = new ComentarioDAOImpl();
+		dao.save(comentario);
+		// Auditoria ELemento
+		Audit aud = new Audit();
+		aud.setCreateDate(new Date());
+		aud.setOperation("Nuevo Comentario");
+		
+		aud.setTableId(comentario.getId());
+		aud.setTableName("comentario");
+		aud.setUserId(userBean.getUsuarioSesion().getId());
+		aud.setIp(Inet4Address.getLocalHost().getHostAddress());
+		AuditDAO audiDao = new AuditDAOImpl();
+		audiDao.save(aud);
+		// TERMINA Auditoria ELemento
+
+		return "listComentario";
+	}
+
+	public String modificarComentario() throws UnknownHostException {
+		ComentarioDAO dao = new ComentarioDAOImpl();
+		dao.update(comentario);
+		// Auditoria ELemento
+		Audit aud = new Audit();
+		aud.setCreateDate(new Date());
+		aud.setOperation("Editar Comentario");
+		aud.setTableId(comentario.getId());
+		aud.setTableName("comentario");
+		aud.setUserId(userBean.getUsuarioSesion().getId());
+		aud.setIp(Inet4Address.getLocalHost().getHostAddress());
+		AuditDAO audiDao = new AuditDAOImpl();
+		audiDao.save(aud);
+		// TERMINA Auditoria ELemento
+		return "listComentario";
+	}
+
+	public Comentario getComentario() {
+		return comentario;
+	}
+
+	public void setComentario(Comentario comentario) {
+		this.comentario = comentario;
+	}
+
+	public DataModel getListarComentario() {
+		List<Comentario> lista = new ComentarioDAOImpl().list();
+		listaComentario = new ListDataModel(lista);
+		return listaComentario;
+	}
+
+	public String prepararAdicionarComentario() {
+		comentario = new Comentario();
+		comentario.setState("A");
+		comentario.setFechaComentario(new Date());
+		return "gerenciarComentario";
+	}
+
+	public UserBean getUserBean() {
+		return userBean;
+	}
+
+	public void setUserBean(UserBean userBean) {
+		this.userBean = userBean;
+	}
+
+}
